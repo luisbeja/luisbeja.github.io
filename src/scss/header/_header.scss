@@ -1,0 +1,147 @@
+@use "base/mixins" as m;
+@use "base/variables" as v;
+
+.header {
+  background-color: v.$primario;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  transition: 0.7s;
+  z-index: 1000;
+  box-shadow: 0 10px 100px rgba(0, 0, 0, 0.1);
+
+  &.barra-color {
+    background-color: #56565654;
+  }
+
+  &__barra {
+    display: flex;
+    flex-direction: column;
+    margin: 0 2rem;
+
+    @include m.tablet {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    @include m.desktop {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  /*&__logo {
+    margin: 1rem;
+
+    @include m.tablet {
+      margin: 0;
+    }
+
+    @include m.desktop {
+      margin: 0;
+    }
+  }*/
+
+  &__logo img {
+    max-width: 60%;
+    width: 6rem;
+
+    @include m.tablet {
+      max-width: 100%;
+      width: 5rem;
+    }
+
+    @include m.desktop {
+      max-width: 100%;
+    }
+  }
+
+  &__nav-principal {
+    display: flex;
+    position: fixed;
+    left: -150%;
+
+    span {
+      color: #afafbc;
+    }
+
+    @include m.tablet {
+      flex-direction: row;
+      gap: 3rem;
+      position: static;
+      margin-top: 0;
+    }
+
+    @include m.desktop {
+      flex-direction: row;
+      gap: 3rem;
+      position: static;
+      margin-top: 0;
+    }
+
+    a {
+      text-align: center;
+      color: v.$blanco;
+      font-size: 1.3rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      //margin-bottom: 1rem;
+      //border-top: solid 1px #625f5f70;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 8px 15px;
+
+      @include m.tablet {
+        margin-bottom: 0;
+        border-top: none;
+        padding: 0;
+      }
+
+      @include m.desktop {
+        margin-bottom: 0;
+        border-top: none;
+        padding: 0;
+      }
+
+      &.activo {
+        color: v.$quinario;
+      }
+
+      &:hover {
+        color: v.$quinario;
+      }
+    }
+  }
+}
+
+.menu-icon,
+#check {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .checkbtn {
+    display: block;
+  }
+
+  .menu-icon {
+    display: block;
+    position: fixed;
+    top: 15px;
+    right: 20px;
+    cursor: pointer;
+    color: #fff;
+  }
+
+  /*.header__nav-principal {
+    display: block;
+  }*/
+}
+
+#check:checked~nav {
+  flex-direction: column;
+  position: static;
+  margin-top: 1rem;
+}

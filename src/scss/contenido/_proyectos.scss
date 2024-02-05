@@ -1,0 +1,129 @@
+@use "base/mixins" as m;
+@use "base/variables" as v;
+
+.proyectos {
+  &__heading {
+    text-align: center;
+    font-size: 3rem;
+    text-transform: uppercase;
+  }
+
+  &__grid {
+    text-align: center;
+    margin: 3rem 5px;
+
+    @include m.grid(1, 2rem);
+
+    @include m.tablet {
+      @include m.grid(2, 2rem);
+    }
+
+    @include m.desktop {
+      @include m.grid(3, 2rem);
+    }
+  }
+}
+
+.proyecto {
+  &__contenido {
+    margin: 0;
+    position: relative;
+  }
+
+  &__imagen {
+    aspect-ratio: 8/3.7;
+    background-size: 100%;
+    position: relative;
+    background-repeat: no-repeat;
+    border-radius: 5px 5px 0 0;
+  }
+
+  &__informacion {
+    padding: 1rem;
+    background-color: v.$blanco;
+    margin-top: 1px solid black;
+    border-radius: 0 0 5px 5px;
+  }
+
+  &__heading {
+    letter-spacing: 2px;
+    font-weight: 400;
+    font-size: 14px;
+
+    a {
+      color: #7d7b72;
+    }
+  }
+
+  @for $i from 1 through 9 {
+    //se va a ejecutar 6 veces
+    $imagen: "../img/proyecto_" + $i + ".png";
+    &:nth-child(#{$i}) &__imagen {
+      background-image: linear-gradient(
+          to bottom,
+          transparentize(v.$negro, 1%) 0%,
+          transparentize(v.$negro, 0.3%) 100%
+        ),
+        url($imagen);
+    }
+
+    &:nth-child(#{$i}) &__imagen:hover {
+      background-image: linear-gradient(
+          to bottom,
+          transparentize(v.$negro, 1%) 0%,
+          transparentize(rgba(0, 0, 0, 0), 0%) 0%
+        ),
+        url($imagen);
+        //cursor: url("../img/arrows-fullscreen.svg")0 0, pointer;
+    }
+  }
+
+
+
+  &:nth-child(4) {
+    .proyecto__width {
+      @include m.grid(2, 1rem);
+      width: 16%;
+    }
+  }
+
+  &:nth-child(7) {
+    .proyecto__width {
+      @include m.grid(2, 1rem);
+      width: 16%;
+    }
+  }
+
+  &:nth-child(8) {
+    .proyecto__width {
+      @include m.grid(2, 1rem);
+      width: 16%;
+    }
+  }
+
+  &:nth-child(5) {
+    .proyecto__width {
+      @include m.grid(3, 1rem);
+      width: 26%;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    place-items: center;
+    margin-top: 1rem;
+  }
+
+  &__width {
+    @include m.grid(4, 1rem);
+    width: 35%;
+  }
+
+  /*&__logo {
+    filter: grayscale(100%);
+
+    &:hover {
+      filter: none;
+    }
+  }*/
+}
